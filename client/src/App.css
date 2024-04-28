@@ -1,0 +1,126 @@
+/* Landing Page css */
+.revenue{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 30px;
+  justify-content: center;
+}
+.title {
+  font-size: 95px;
+}
+.subtitle {
+  font-size: 25px;
+  padding-top: 10px;
+}
+.intro-text {
+  width: 100%;
+  text-align: center;
+}
+.main {
+  min-height: 93vh;
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+}
+.buttonContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.landingbutton {
+  width: 200px;
+  height: 55px;
+}
+
+.big{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#login{
+  background: url('./img/bg.jpeg');
+  background-size: 300px;
+  width: 300px;
+  height: 300px;
+  background-repeat: no-repeat;
+}
+@media only screen and (min-width: 1200px) {
+  .buttonContainer {
+    padding: 0 200px;
+  }
+  .title {
+    padding: 0 100px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 60px;
+  }
+  .landingbutton {
+    width: 150px;
+    height: 50px;
+  }
+}
+
+/* screen css */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
+
+.mainback {
+  min-height: 93vh;
+  display: flex;
+  padding: 10px 0;
+}
+.page {
+  width: 100%;
+}
+.heading {
+  font-size: 60px;
+  /* font-family: "Ubuntu", sans-serif; */
+  font-family: "Work Sans", sans-serif;
+  padding: 5px 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/** login Container **/
+.loginContainer {
+  margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  padding: 35px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/** profileScreen **/
+.profilePic {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.profileContainer {
+  display: flex;
+  margin: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .profileContainer {
+    flex-direction: column-reverse;
+  }
+}
+.guests{
+  display:flex;
+  flex-wrap: wrap;
+}
