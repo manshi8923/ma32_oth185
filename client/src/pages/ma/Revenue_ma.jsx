@@ -16,6 +16,7 @@ const Revenue_ma = () => {
   const [rev_day, setRev_day] = useState(0);
   const [month_rev,setMonth_rev]=useState(0);
   const [year_rev,setYear_rev]=useState(0);
+  const [arr,setArr]=useState(0);
   useEffect(() => {
     setLoading(true);
     fetch("/api/ma/guests/", {
@@ -29,6 +30,11 @@ const Revenue_ma = () => {
         setLoading(false);
         let revenue_day = parseInt(0);
         const date = moment().format("YYYY-MM-DD");date.toString();
+        for(let i=0;i<data.length;i++){
+          if(data[i].total!==undefined){
+            setArr(arr+parseInt(data[i].total));
+          }
+        }
         if(date[5]=='0'){
           setMonth(months[parseInt(date[6])]);
         }
@@ -38,13 +44,11 @@ const Revenue_ma = () => {
         }
         let mont_arr=0; let year_arr=0;
         for (let i = 0; i < data.length; i++) {
-          if(data[i].depart[5]==date[5]&&data[i].depart[6]==date[6]&&data[i].bill!==undefined&&data[i].price!==undefined){
-           mont_arr+=parseInt(data[i].price);
-           mont_arr+=parseInt(data[i].bill);
+          if(data[i].depart[5]==date[5]&&data[i].depart[6]==date[6]&&data[i].total!==undefined){
+           mont_arr+=parseInt(data[i].total);
           }
-          if(data[i].bill!==undefined&&data[i].price!==undefined){
-             year_arr+=parseInt(data[i].price);
-             year_arr+=parseInt(data[i].bill);
+          if(data[i].total!==undefined){
+             year_arr+=parseInt(data[i].total);
           }
       }
       if(date[5]==='0'){
@@ -57,9 +61,8 @@ const Revenue_ma = () => {
       setYear_rev(year_arr);
       setMonth_rev(mont_arr);
         for (let i = 0; i < data.length; i++) {
-          if (data[i].depart == date&&data[i].bill!==undefined&&data[i].price!==undefined) {
-            revenue_day += parseInt(data[i].price);
-            revenue_day += parseInt(data[i].bill);
+          if (data[i].depart == date&&data[i].total!==undefined) {
+            revenue_day += parseInt(data[i].total);
           }
         }
         setRev_day(revenue_day);
@@ -76,7 +79,8 @@ const Revenue_ma = () => {
             <FaBraveReverse size={'10rem'} style={{ margin: 'auto', color: 'gray' }} />
             <Card.Body>
               <Card.Text>
-                <h3 style={{ color: 'red' }}>ARR of {new Date().toLocaleDateString()} : {rev_day}</h3>
+                <h3 style={{ color: 'red' }}>Revenue of {new Date().toLocaleDateString()} : {rev_day}</h3>
+                <h4 style={{ color: 'blue' }}>ARR of {new Date().toLocaleDateString()} : {arr} </h4>
                 <h4 style={{ color: 'orange' }}>Monthly Prediction : {rev_day * 30} </h4>
               </Card.Text>
               <Button variant="primary" onClick={() => navigate('/ma/guests')} >Go to Dashboard</Button>
@@ -86,9 +90,9 @@ const Revenue_ma = () => {
             <FaGripfire size={'10rem'} style={{ margin: 'auto', color: 'gray' }} />
             <Card.Body>
               <Card.Text>
-                <h3 style={{ color: 'red' }}>Monthly ARR ({month}) : {month_rev} </h3>
+                <h3 style={{ color: 'red' }}>Monthly Revenue ({month}) : {month_rev} </h3>
+                <h4 style={{ color: 'blue' }}>ARR of {new Date().toLocaleDateString()} : {arr} </h4>
                 <h4 style={{ color: 'orange' }}>Yearly Prediction : {year_rev* 12}</h4>
-
               </Card.Text>
               <Button variant="primary" onClick={() => navigate('/ma/guests')} >Go to Dashboard</Button>
             </Card.Body>

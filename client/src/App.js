@@ -18,6 +18,7 @@ import Rooms_oth from './pages/oth/Rooms_oth';
 import Guests_oth from './pages/oth/Guests_oth';
 import GenerateBill_oth from './pages/oth/GenerateBill_oth';
 import Revenue_oth from './pages/oth/Revenue_oth';
+import AddGuest_oth from './pages/oth/AddGuest_oth';
 const App = () => {
   return (
     <BrowserRouter>
@@ -35,7 +36,7 @@ const App = () => {
       {/* oth */}
       <Route path='/oth/dashboard' element={<Dashboard_oth/>} />
       <Route path='/oth/room/:id' element={<SingleRoom_oth/>} />
-      <Route path='/oth/addguest/:id' element={<SingleRoom_oth/>} />
+      <Route path='/oth/addguest/:id' element={<AddGuest_oth/>} />
       <Route path='/oth/rooms' element={<Rooms_oth/>} />
       <Route path='/oth/guests' element={<Guests_oth/>} />
       <Route path='/oth/generateBill/:id' element={<GenerateBill_oth/>}/>

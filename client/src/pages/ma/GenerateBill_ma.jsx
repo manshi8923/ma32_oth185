@@ -13,9 +13,9 @@ const GenerateBill_ma = () => {
   const [bill,setBill]=useState(false);
   const [price,setPrice]=useState(0);
   const [days,setDays]=useState(0);
+  const [add,setAdd]=useState();
   useEffect(()=>{
     const id=window.location.pathname.substring(17);
-    console.log(id);
     setParams(id);
   },[]);
   
@@ -27,7 +27,6 @@ const GenerateBill_ma = () => {
         "Content-Type": "application/json"
       }
     }).then(res=>{
-      console.log(res);
       return res.json();
     }).then(data=>{
       if(data){
@@ -47,7 +46,7 @@ const GenerateBill_ma = () => {
       },
       body:JSON.stringify({
         bill:parseInt(breakfast)+parseInt(lunch)+parseInt(dinner),
-        total:price*days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)
+        total:price*days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)
       })
     }).then(res=>res.json())
     .then(data=>{
@@ -62,12 +61,9 @@ const GenerateBill_ma = () => {
   const date=moment().format("DD/MM/YYYY");
   const handlePrint=(divName)=>{
     var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-
+    var originalContents = document.body.innerHTML
     document.body.innerHTML = printContents;
-
     window.print();
-
     document.body.innerHTML = originalContents;
   }
   return (
@@ -90,6 +86,12 @@ const GenerateBill_ma = () => {
              <input type='Number' value={dinner} onChange={(e)=>setDinner(e.target.value)}/>
          </Card.Header>
      </Card>
+     <Card style={{margin:10}} >
+       <Card.Header style={{display:"flex"}} >
+             <span style={{color: "black",textDecoration: "none",flex: 1,cursor: "pointer",alignSelf: "center",fontSize: 18,}}>Convenience Fee</span>
+             <input type='Number' value={add} onChange={(e)=>setAdd(e.target.value)}/>
+         </Card.Header>
+     </Card>
      <Button style={{marginLeft:30}} onClick={()=>updateFood()}>Total</Button>
      {click&&<span style={{fontSize:'20px'}}>&nbsp; &nbsp; &nbsp; &nbsp; {parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)}</span>}
      <br/>
@@ -109,6 +111,8 @@ const GenerateBill_ma = () => {
     <p style={{fontWeight:'bold'}}>GST No: 06AZVPBB205E1ZF</p>
     <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : {date}</h5>
     <h5 style={{fontWeight:'bold'}}>Billing to: {data.name}</h5>
+    <h5 style={{fontWeight:'bold'}}>{data.address}</h5>
+    <h5 style={{fontWeight:'bold'}}>GST NO . {data.gst}</h5>
     <br/>
     <table style={{border: '1px solid black',fontWeight:'bold'}}>
       <tr>
@@ -189,6 +193,17 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>3</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Convenience Fee</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+        </tr>
+        <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Grand Total</td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
@@ -196,8 +211,8 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)}</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{add}</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)}</td>
         </tr>
     </table>
     <h5 style={{fontWeight:'bold',marginTop:'50px'}}>Thank You.</h5>

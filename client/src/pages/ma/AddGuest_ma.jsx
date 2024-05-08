@@ -9,6 +9,7 @@ import moment from 'moment';
 import {toast} from 'react-toastify';
 const AddGuest_ma = () => {
   const [loading,setLoading]=useState(false);
+  const [gst,setGst]=useState("");
   const [error,setError]=useState(false);
   const [name,setName]=useState("");
   const [email,setEmail]=useState("");
@@ -45,6 +46,7 @@ const AddGuest_ma = () => {
         arrival:arrival,
         depart:depart,
         price:price,
+        gst:gst,
       })
     }).then(res=>res.json())
     .then(data=>{
@@ -135,7 +137,7 @@ const AddGuest_ma = () => {
             <Form.Group controlId="content" style={{marginTop:10}}>
               <Form.Label>Remarks</Form.Label>
               <Form.Control
-              type="date"
+              type="text"
               value={remarks}
               onChange={(e)=>setRemarks(e.target.value)}
                 placeholder="From where the guest listen about us? "
@@ -149,6 +151,15 @@ const AddGuest_ma = () => {
               value={price}
               onChange={(e)=>setPrice(e.target.value)}
                 placeholder="Rent of Room per day"
+              />
+            </Form.Group>
+            <Form.Group controlId="content">
+              <Form.Label>GST No</Form.Label>
+              <Form.Control
+              type="text"
+              value={gst}
+              onChange={(e)=>setGst(e.target.value)}
+                placeholder="Gst No of the guest"
               />
             </Form.Group>
             {loading && <Loading size={50} />}
