@@ -67,5 +67,5 @@ const guestSchema=mongoose.Schema({
     timestamps:true
 });
 
-const Guests_ma=mongoose.model("Guests_ma",guestSchema);
-module.exports=Guests_ma;
+const Guests_oth=mongoose.model("Guests_oth",guestSchema);
+module.exports=Guests_oth;

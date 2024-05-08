@@ -19,7 +19,8 @@ app.use(express.json());
 // routes
 app.use('/api/ma/rooms',require("./routes/ma32/roomRoutes"));
 app.use('/api/ma/guests',require('./routes/ma32/guestRoutes'));
-
+app.use('/api/oth/rooms',require("./routes/oth185/roomRoutes"));
+app.use('/api/oth/guests',require('./routes/oth185/guestRoutes'));
 app.use(express.static(path.join(__dirname,'./client/build')));
 app.get('*',function(req,res){
     res.sendFile(path.join(__dirname,"./client/build/index.html"))
