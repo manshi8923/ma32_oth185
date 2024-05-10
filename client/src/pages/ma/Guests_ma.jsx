@@ -115,8 +115,14 @@ const Guests_ma = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>GST No : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.gst}</span>
                   <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>GST No type: </span>
+                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.type!==undefined?guest.type.toUpperCase():""}</span>
+                  <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Food Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.bill===undefined?'Not Done':guest.bill}</span>
+                  <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>Room Rent per day : </span>
+                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.price}</span>
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Total Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.total===undefined?'Not Done':guest.total}</span>

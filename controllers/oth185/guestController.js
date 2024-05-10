@@ -29,7 +29,7 @@ const updateFoodBill=asyncHandler(async(req,res)=>{
     try{
         if(guest){
             guest.bill=bill;
-            guest.total=total;
+            guest.total=total+guest.price*guest.days+(guest.price*guest.days)*0.12;
             guest.status="Depart";
             guest.color="#FF9494";
             await guest.save();

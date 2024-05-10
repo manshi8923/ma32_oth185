@@ -31,7 +31,7 @@ const Revenue_ma = () => {
         let revenue_day = parseInt(0);
         const date = moment().format("YYYY-MM-DD");date.toString();
         for(let i=0;i<data.length;i++){
-          if(data[i].total!==undefined){
+          if (data[i].depart == date&&data[i].total!==undefined&&data[i].total!==null) {
             setArr(arr+parseInt(data[i].total));
           }
         }
@@ -44,10 +44,10 @@ const Revenue_ma = () => {
         }
         let mont_arr=0; let year_arr=0;
         for (let i = 0; i < data.length; i++) {
-          if(data[i].depart[5]==date[5]&&data[i].depart[6]==date[6]&&data[i].total!==undefined){
+          if(data[i].depart[5]==date[5]&&data[i].depart[6]==date[6]&&data[i].total!==undefined&&data[i].total!==null){
            mont_arr+=parseInt(data[i].total);
           }
-          if(data[i].total!==undefined){
+          if(data[i].total!==undefined&&data[i].total!==null){
              year_arr+=parseInt(data[i].total);
           }
       }
@@ -61,7 +61,7 @@ const Revenue_ma = () => {
       setYear_rev(year_arr);
       setMonth_rev(mont_arr);
         for (let i = 0; i < data.length; i++) {
-          if (data[i].depart == date&&data[i].total!==undefined) {
+          if (data[i].depart == date&&data[i].total!==undefined&&data[i].total!==null) {
             revenue_day += parseInt(data[i].total);
           }
         }
@@ -87,11 +87,11 @@ const Revenue_ma = () => {
             </Card.Body>
           </Card>
           <Card style={{ width: '18rem', margin: '2rem', paddingTop: '15px' }}>
-            <FaGripfire size={'10rem'} style={{ margin: 'auto', color: 'gray' }} />
+            <FaGripfire size={'8rem'} style={{ margin: 'auto', color: 'gray' }} />
             <Card.Body>
               <Card.Text>
-                <h3 style={{ color: 'red' }}>Monthly Revenue ({month}) : {month_rev} </h3>
-                <h4 style={{ color: 'blue' }}>ARR of {new Date().toLocaleDateString()} : {arr} </h4>
+                <h3 style={{ color: 'red' }}>Monthly Revenue ({month}) : {month_rev/30} </h3>
+                <h4 style={{ color: 'blue' }}>ARR of {month} : {month_rev} </h4>
                 <h4 style={{ color: 'orange' }}>Yearly Prediction : {year_rev* 12}</h4>
               </Card.Text>
               <Button variant="primary" onClick={() => navigate('/ma/guests')} >Go to Dashboard</Button>

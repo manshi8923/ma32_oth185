@@ -112,6 +112,9 @@ const Guests_oth = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>GST No : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.gst}</span>
                   <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>GST NO. type : </span>
+                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.type!==undefined?guest.type.toUpperCase():""}</span>
+                  <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Allocated Room : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.roomNo}</span>
                   <br/>

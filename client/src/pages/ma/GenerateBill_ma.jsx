@@ -31,7 +31,7 @@ const GenerateBill_ma = () => {
     }).then(data=>{
       if(data){
         setData(data);
-        setPrice(data.price);
+        setPrice(data.price*data.days);
         setDays(data.days);
       }
     })
@@ -46,7 +46,7 @@ const GenerateBill_ma = () => {
       },
       body:JSON.stringify({
         bill:parseInt(breakfast)+parseInt(lunch)+parseInt(dinner),
-        total:price*days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)
+        total:parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)+(parseInt(breakfast)+parseInt(lunch)+parseInt(dinner))*0.05
       })
     }).then(res=>res.json())
     .then(data=>{
@@ -65,6 +65,17 @@ const GenerateBill_ma = () => {
     document.body.innerHTML = printContents;
     window.print();
     document.body.innerHTML = originalContents;
+  }
+  let room_gst="";
+  let food_gst="";
+  
+  room_gst=parseInt((data.price*data.days)*0.12);
+  let to=room_gst;
+  food_gst=parseInt((parseInt(lunch)+parseInt(breakfast)+parseInt(dinner))*0.05);
+  let fo=food_gst;
+  if(data.type!=="igst"){
+    room_gst/=2;
+    food_gst/=2;
   }
   return (
     <MainScreen title={"Your bill is here"}>
@@ -93,7 +104,7 @@ const GenerateBill_ma = () => {
          </Card.Header>
      </Card>
      <Button style={{marginLeft:30}} onClick={()=>updateFood()}>Total</Button>
-     {click&&<span style={{fontSize:'20px'}}>&nbsp; &nbsp; &nbsp; &nbsp; {parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)}</span>}
+     {click&&<span style={{fontSize:'20px'}}>&nbsp; &nbsp; &nbsp; &nbsp; {parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)}</span>}
      <br/>
      {!bill&&<Button onClick={()=>getUser()} style={{margin:30}} size='lg' variant='danger'>Generate Bill</Button>} 
        {/*  print */}
@@ -140,13 +151,13 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>01/04/2024 to 30/04/20224</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>996311</td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>@6</p><p>@6</p></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"@12%":"@6%"}</p><p>{data.type=="igst"?"":"@6%"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>289</p><p>289</p></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{room_gst}</p><p>{data.type==="igst"?"":room_gst}</p></td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
@@ -157,7 +168,7 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+289+289}</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+to}</td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>2</td>
@@ -173,13 +184,13 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>I.SGST</p><p>II. CGST</p></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"I. IGST":"II .SGST"}</p><p>{data.type==="igst"?"":"II. CGST"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>@2.5%</p><p>@2.5%</p></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"@5%":"@2.5%"}</p><p>{data.type=="igst"?"":"@2.5%"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{food_gst}</p><p>{data.type==="igst"?"":food_gst}</p></td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
@@ -201,7 +212,7 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{add}</td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
@@ -211,8 +222,8 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{add}</td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+289+289+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)}</td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{data.price*data.days+to+fo+parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(add)}</td>
         </tr>
     </table>
     <h5 style={{fontWeight:'bold',marginTop:'50px'}}>Thank You.</h5>

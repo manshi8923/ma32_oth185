@@ -20,6 +20,7 @@ const AddGuest_oth = () => {
   const [price,setPrice]=useState("");
   const [params,setParams]=useState("");
   const [remarks,setRemarks]=useState("");
+  const [type,setType]=useState("");
   const [gst,setGst]=useState("");
   const navigate=useNavigate();
   useEffect(()=>{
@@ -46,7 +47,8 @@ const AddGuest_oth = () => {
         arrival:arrival,
         depart:depart,
         price:price,
-        gst:gst
+        gst:gst,
+        type:type
       })
     }).then(res=>res.json())
     .then(data=>{
@@ -63,7 +65,7 @@ const AddGuest_oth = () => {
   return (
     <>
      <Navbar_oth/>
-    <MainScreen title={"Booking of a guest"}> 
+     <MainScreen title={"Booking of a guest"}> 
     <Card>
         <Card.Header>Booking of a new Guest</Card.Header>
         <Card.Body>
@@ -143,7 +145,7 @@ const AddGuest_oth = () => {
                 placeholder="From where the guest listen about us? "
               />
             </Form.Group>
-
+            <br/>
             <Form.Group controlId="content">
               <Form.Label>Room Rent of a day</Form.Label>
               <Form.Control
@@ -153,6 +155,7 @@ const AddGuest_oth = () => {
                 placeholder="Rent of Room per day"
               />
             </Form.Group>
+            <br/>
             <Form.Group controlId="content">
               <Form.Label>GST No</Form.Label>
               <Form.Control
@@ -162,11 +165,25 @@ const AddGuest_oth = () => {
                 placeholder="Gst No of the guest"
               />
             </Form.Group>
+            <br/>
+            <Form.Label>GST No. Type</Form.Label>
+            <Form.Control
+              as="select"
+              value={type}
+              onChange={e => {
+                setType(e.target.value);
+              }}>
+              <option value="">Select the type of Gst No.</option>
+              <option value="cgst">CGST</option>
+              <option value="sgpt">SGST</option>
+              <option value="igpt">IGST</option>
+            </Form.Control>
+            <br/>
             {loading && <Loading size={50} />}
             <Button type="submit" variant="primary" style={{marginTop:10}}>
               Done Booking
             </Button>
-            <Button className="mx-2" onClick={()=>navigate('/oth/guests')} variant="danger" style={{marginTop:10}}>
+            <Button className="mx-2" onClick={()=>navigate('/ma/guests')} variant="danger" style={{marginTop:10}}>
               Go to Guests Dashboard
             </Button>
             
