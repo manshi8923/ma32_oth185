@@ -176,7 +176,7 @@ const AddGuest_oth = () => {
               <option value="">Select the type of Gst No.</option>
               <option value="cgst">CGST</option>
               <option value="sgpt">SGST</option>
-              <option value="igpt">IGST</option>
+              <option value="igst">IGST</option>
             </Form.Control>
             <br/>
             {loading && <Loading size={50} />}

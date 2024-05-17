@@ -151,10 +151,9 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"I. IGST":"I .SGST"}</p><p>{data.type==="igst"?"":"II. CGST"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>996311</td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"@12%":"@6%"}</p><p>{data.type=="igst"?"":"@6%"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{room_gst}</p><p>{data.type==="igst"?"":room_gst}</p></td>
@@ -184,7 +183,7 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"I. IGST":"II .SGST"}</p><p>{data.type==="igst"?"":"II. CGST"}</p></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"I. IGST":"I .SGST"}</p><p>{data.type==="igst"?"":"II. CGST"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>

@@ -95,6 +95,8 @@ const Guests_oth = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>Address : </span>
                   <span style={{fontSize:'23px',color:'#0000FF'}}>{guest.address}</span>
                   <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>Status : </span>
+                  <span style={{fontSize:'23px',color:'#0000FF'}}>{guest.status=="Depart"?"CheckedOut":"CheckedIn"}</span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.email}</span>
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Phone : </span>
