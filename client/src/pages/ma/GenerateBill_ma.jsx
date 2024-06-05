@@ -111,19 +111,19 @@ const GenerateBill_ma = () => {
        {bill&& <>
 
     <div id='print' style={{marginLeft:'60px',marginBottom:'40px'}}>
-    <h1 style={{textAlign:'center',marginTop:'30px'}}>RENT INVOICE</h1>
+    <h1 style={{textAlign:'center',marginTop:'30px'}}>HOTEL ACCOMMODATION INVOICE</h1>
     <br/>
     <br/>
     <h3>FROM</h3>
     <h5 style={{fontWeight:'bold'}}>CHARANJIT BAJWA (OYO TOWNHOUSE) &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Date : {date}</h5>
-    <h5 style={{fontWeight:'bold'}}>Plot No.32,Moulsari Avenue Rapid Metro Station</h5>
-    <h5 style={{fontWeight:'bold'}}>DLF City Phase 3, Gurgram,Haryana-122001</h5>
-    <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
-    <p style={{fontWeight:'bold'}}>GST No: 06AZVPBB205E1ZF</p>
-    <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : {date}</h5>
-    <h5 style={{fontWeight:'bold'}}>Billing to: {data.name}</h5>
-    <h5 style={{fontWeight:'bold'}}>{data.address}</h5>
-    <h5 style={{fontWeight:'bold'}}>GST NO . {data.gst}</h5>
+ <h5 style={{fontWeight:'bold'}}>Plot No.32,Moulsari Avenue Rapid Metro Station</h5>
+ <h5 style={{fontWeight:'bold'}}>DLF City Phase 3, Gurgram,Haryana-122001</h5>
+ <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
+ <p style={{fontWeight:'bold'}}>GST No: 06AZVPBB205E1ZF</p>
+ <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : 2024-25/{data.size}</h5>
+ <h5 style={{fontWeight:'bold'}}>Billing to: {data.name}</h5>
+ <h5 style={{fontWeight:'bold'}}>{data.address}</h5>
+ <h5 style={{fontWeight:'bold'}}>GST NO . {data.gst}</h5>
     <br/>
     <table style={{border: '1px solid black',fontWeight:'bold'}}>
       <tr>
@@ -154,6 +154,7 @@ const GenerateBill_ma = () => {
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"I. IGST":"I .SGST"}</p><p>{data.type==="igst"?"":"II. CGST"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>996311</td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{data.type==="igst"?"@12%":"@6%"}</p><p>{data.type=="igst"?"":"@6%"}</p></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}><p>{room_gst}</p><p>{data.type==="igst"?"":room_gst}</p></td>
@@ -161,7 +162,7 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Total</td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
@@ -194,13 +195,13 @@ const GenerateBill_ma = () => {
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Total</td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
-          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}></td>
+          <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{parseInt(breakfast)+parseInt(lunch)+parseInt(dinner)+parseInt(food_gst)}</td>
         </tr>
         <tr style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>
           <td style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>3</td>
@@ -226,11 +227,9 @@ const GenerateBill_ma = () => {
         </tr>
     </table>
     <h5 style={{fontWeight:'bold',marginTop:'50px'}}>Thank You.</h5>
-    <h5 style={{fontWeight:'bold'}}>OYO Townhouse</h5>
-    <h5 style={{fontWeight:'bold'}}>Plot No.32,Moulsari Avenue Rapid Metro Station,</h5>
-    <h5 style={{fontWeight:'bold'}}>DLF City Phase 3,Gurugram, Haryana- 122001</h5>
-    <h5 style={{fontWeight:'bold'}}>RTGS Code: HDFC0001306</h5>
-    <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
+ <h5 style={{fontWeight:'bold'}}>Plot No.32,Moulsari Avenue Rapid Metro Station,</h5>
+ <h5 style={{fontWeight:'bold'}}>DLF City Phase 3,Gurugram, Haryana- 122001</h5>
+ <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
    </div>
    <Button style={{marginLeft:'60px'}} onClick={()=>handlePrint('print')}>Print</Button>
        </>}

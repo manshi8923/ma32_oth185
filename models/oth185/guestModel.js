@@ -66,6 +66,10 @@ const guestSchema=mongoose.Schema({
     type:{
         type:String,
         required:false
+    },
+    size:{
+        type:String,
+        required:false
     }
 },{
     timestamps:true
