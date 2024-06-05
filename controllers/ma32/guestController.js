@@ -12,7 +12,7 @@ const getGuests=asyncHandler(async(req,res)=>{
 const addGuest=asyncHandler(async(req,res)=>{
     const newGuest=await new Guests(req.body);
     const guests=await Guests.find();
-    newGuest.size=guests.size();
+    newGuest.size=guests.length;
     const room=await Rooms.findById(req.params.id);
         newGuest.roomNo=room.roomNo;
         newGuest.bookedOn=new Date().toLocaleDateString();
