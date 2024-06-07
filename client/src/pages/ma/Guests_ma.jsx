@@ -7,7 +7,7 @@ import Navbar_ma from '../../components/Navbar_ma';
 import MainScreen from '../../components/MainScreen';
 import ErrorMessage from '../../components/ErrorMessage';
 import Loading from '../../components/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Guests_ma = () => {
   const [error, setError] = useState("");
@@ -17,6 +17,7 @@ const Guests_ma = () => {
   const [guests,setGuests]=useState([]);
   const [done,setDone]=useState(false);
   const [dat,setDat]=useState();
+  const navigate=useNavigate();
     useEffect(()=>{
       setLoading(true);
       fetch("/api/ma/guests/",{
@@ -97,6 +98,7 @@ const Guests_ma = () => {
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Status : </span>
                   <span style={{fontSize:'23px',color:'#0000FF'}}>{guest.status=="Depart"?"CheckedOut":"CheckedIn"}</span>
+                  <br/>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.email}</span>
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Phone : </span>
@@ -129,6 +131,7 @@ const Guests_ma = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>Total Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.total===undefined?'Not Done':guest.total}</span>
                 </Card.Body>
+                {guest.status!=="Depart"&&<Button onClick={()=>{navigate(`/ma/edit/${guest._id}`)} }>Edit Guest Status</Button>}
                 </Card>
              })
          }

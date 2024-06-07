@@ -7,7 +7,7 @@ import Navbar_oth from '../../components/Navbar_oth';
 import MainScreen from '../../components/MainScreen';
 import ErrorMessage from '../../components/ErrorMessage';
 import Loading from '../../components/Loading';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Guests_oth = () => {
   const [error, setError] = useState("");
@@ -17,6 +17,7 @@ const Guests_oth = () => {
   const [guests,setGuests]=useState([]);
   const [done,setDone]=useState(false);
   const [dat,setDat]=useState();
+  const navigate=useNavigate();
     useEffect(()=>{
       setLoading(true);
       fetch("/api/oth/guests/",{
@@ -54,7 +55,8 @@ const Guests_oth = () => {
     setGuests(users);
   }
   return (
-    <>
+
+      <>
        <Navbar_oth/>
        <MainScreen title={'All the guests details here'} >
         <InputGroup className="mb-3"  style={{border:'1px solid black',borderRadius:'10px'}}>
@@ -67,7 +69,7 @@ const Guests_oth = () => {
           Search By date
         </Button>
       </InputGroup>
-            <Link to={'/oth/rooms'}>
+            <Link to={'/ma/rooms'}>
                 <Button style={{ marginLeft: 10, marginBottom: 6 }} size='lg'>
                     Book a room 
                 </Button>
@@ -97,6 +99,7 @@ const Guests_oth = () => {
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Status : </span>
                   <span style={{fontSize:'23px',color:'#0000FF'}}>{guest.status=="Depart"?"CheckedOut":"CheckedIn"}</span>
+                  <br/>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.email}</span>
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Phone : </span>
@@ -111,27 +114,31 @@ const Guests_oth = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>Depart Date : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.depart}</span>
                   <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>Allocated Room : </span>
+                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.roomNo}</span>
+                  <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>GST No : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.gst}</span>
                   <br/>
-                  <span className='mb-2' style={{fontSize:'20px'}}>GST NO. type : </span>
+                  <span className='mb-2' style={{fontSize:'20px'}}>GST No type: </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.type!==undefined?guest.type.toUpperCase():""}</span>
-                  <br/>
-                  <span className='mb-2' style={{fontSize:'20px'}}>Allocated Room : </span>
-                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.roomNo}</span>
                   <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Food Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.bill===undefined?'Not Done':guest.bill}</span>
                   <br/>
+                  <span className='mb-2' style={{fontSize:'20px'}}>Room Rent per day : </span>
+                  <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.price}</span>
+                  <br/>
                   <span className='mb-2' style={{fontSize:'20px'}}>Total Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.total===undefined?'Not Done':guest.total}</span>
                 </Card.Body>
+                {guest.status!=="Depart"&&<Button onClick={()=>{navigate(`/ma/edit/${guest._id}`)} }>Edit Guest Status</Button>}
                 </Card>
              })
          }
             </div>
      </MainScreen>
-     </>
+    </>
   )
 }
 

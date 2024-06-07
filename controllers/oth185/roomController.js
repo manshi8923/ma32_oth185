@@ -1,5 +1,6 @@
 const Rooms=require("../../models/oth185/roomModel");
 const asyncHandler=require("express-async-handler");
+const Expense=require("../../models/oth185/expenseModel");
 //get rooms status
 const getRooms=asyncHandler(async(req,res)=>{
     try{
@@ -45,4 +46,16 @@ const updateRoom=asyncHandler(async(req,res)=>{
   
 });
 
-module.exports={getRooms,updateRoom};
+//add expense
+const addExpense=asyncHandler(async(req,res)=>{
+    const newExpense=await new Expense(req.body);
+    console.log("manshi")
+    await newExpense.save();
+    res.status(201).json(newExpense);
+})
+//get expense
+const getExpense=asyncHandler(async(req,res)=>{
+    const expense=await Expense.find();
+    res.send(expense);
+})
+module.exports={getRooms,updateRoom,getExpense,addExpense};

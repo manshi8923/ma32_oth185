@@ -41,6 +41,10 @@ const Navbar_ma = () => {
                   Revenue
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item href='/ma/expense'>
+                  Expense
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>

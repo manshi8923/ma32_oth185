@@ -77,7 +77,7 @@ const Revenue_oth = () => {
       <MainScreen title="Average Room Revenue is here">
         {loading && <Loading />}
         <div className='revenue'>
-          <Card style={{ width: '18rem', margin: '2rem', paddingTop: '15px' }}>
+          <Card style={{ width: '18rem', margin: '2rem', paddingTop: '15px',height:'380px' }}>
             <FaBraveReverse size={'10rem'} style={{ margin: 'auto', color: 'gray' }} />
             <Card.Body>
               <Card.Text>
@@ -88,12 +88,11 @@ const Revenue_oth = () => {
               <Button variant="primary" onClick={() => navigate('/ma/guests')} >Go to Dashboard</Button>
             </Card.Body>
           </Card>
-          <Card style={{ width: '18rem', margin: '2rem', paddingTop: '15px' }}>
+          <Card style={{ width: '18rem', margin: '2rem', paddingTop: '15px',height:'380px' }}>
             <FaGripfire size={'8rem'} style={{ margin: 'auto', color: 'gray' }} />
             <Card.Body>
               <Card.Text>
                 <h3 style={{ color: 'red' }}>Monthly Revenue ({month}) : {month_rev/30} </h3>
-                <h4 style={{ color: 'blue' }}>ARR of {month} : {month_rev} </h4>
                 <h4 style={{ color: 'orange' }}>Yearly Prediction : {year_rev* 12}</h4>
               </Card.Text>
               <Button variant="primary" onClick={() => navigate('/ma/guests')} >Go to Dashboard</Button>

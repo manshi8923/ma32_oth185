@@ -124,3 +124,15 @@
   display:flex;
   flex-wrap: wrap;
 }
+
+/* expense */
+.expense{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+.expense h1{
+  margin-bottom: 30px;
+}

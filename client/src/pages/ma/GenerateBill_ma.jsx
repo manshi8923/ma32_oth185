@@ -13,7 +13,7 @@ const GenerateBill_ma = () => {
   const [bill,setBill]=useState(false);
   const [price,setPrice]=useState(0);
   const [days,setDays]=useState(0);
-  const [add,setAdd]=useState();
+  const [add,setAdd]=useState(0);
   useEffect(()=>{
     const id=window.location.pathname.substring(17);
     setParams(id);

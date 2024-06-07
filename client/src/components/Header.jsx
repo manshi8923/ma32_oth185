@@ -41,6 +41,10 @@ const Header = ({hotelname}) => {
                   Revenue
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item href='/expense'>
+                   Expense
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>

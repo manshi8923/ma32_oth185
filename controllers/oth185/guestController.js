@@ -1,7 +1,7 @@
 const asyncHandler =require("express-async-handler");
 const Guests=require("../../models/oth185/guestModel");
 const Rooms=require("../../models/oth185/roomModel");
-
+const Expense=require("../../models/ma32/expenseModel");
 //get guests
 const getGuests=asyncHandler(async(req,res)=>{
     const guests=await Guests.find();
@@ -12,7 +12,7 @@ const getGuests=asyncHandler(async(req,res)=>{
 const addGuest=asyncHandler(async(req,res)=>{
     const newGuest=await new Guests(req.body);
     const guests=await Guests.find();
-    newGuest.size=guests.length;
+    newGuest.size=guests.length+1;
     const room=await Rooms.findById(req.params.id);
         newGuest.roomNo=room.roomNo;
         newGuest.bookedOn=new Date().toLocaleDateString();
@@ -24,6 +24,17 @@ const addGuest=asyncHandler(async(req,res)=>{
         await room.save();
         res.status(201).json(newGuest);
 });
+//add expense
+const addExpense=asyncHandler(async(req,res)=>{
+    const newExpense=await new Expense(req.body);
+    await newExpense.save();
+    res.status(201).json(newExpense);
+})
+//get expense
+const getExpense=asyncHandler(async(req,res)=>{
+    const expense=await Expense.find();
+    res.send(expense);
+})
 //update guest 
 const updateFoodBill=asyncHandler(async(req,res)=>{
     const{bill,total}=req.body;
@@ -57,4 +68,26 @@ const searchGuest=asyncHandler(async(req,res)=>{
    }
 });
 
-module.exports={addGuest,getGuests,searchGuest,updateFoodBill};
+
+//update guest 
+const updateGuest=asyncHandler(async(req,res)=>{
+    const {days,arrival,depart,price}=req.body;
+    const guest=await Guests.findById(req.params.id);
+    try{
+        if(guest){
+            guest.days=days;
+            guest.arrival=arrival;
+            guest.depart=depart;
+            guest.price=price;
+            await guest.save();
+        }
+        else{
+            res.status(404).send("Not found");
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
+module.exports={addGuest,getGuests,searchGuest,updateFoodBill,addExpense,getExpense,updateGuest};
