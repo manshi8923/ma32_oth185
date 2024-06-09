@@ -16,6 +16,7 @@ const EditGuest_oth = () => {
   const [depart,setDepart]=useState("");
   const [price,setPrice]=useState("");
   const [params,setParams]=useState("");
+  const [gst,setGst]=useState("");
   const navigate=useNavigate();
   useEffect(()=>{
     const id=window.location.pathname.substring(10);
@@ -37,6 +38,7 @@ const EditGuest_oth = () => {
         arrival:arrival,
         depart:depart,
         price:price,
+        gst:gst
       })
     }).then(res=>res.json())
     .then(data=>{
@@ -99,6 +101,17 @@ const EditGuest_oth = () => {
               required
               onChange={(e)=>setPrice(e.target.value)}
                 placeholder="Rent of Room per day"
+              />
+            </Form.Group>
+            <br/>
+
+            <Form.Group controlId="content">
+              <Form.Label>GST</Form.Label>
+              <Form.Control
+              type="text"
+              value={gst}
+              onChange={(e)=>setGst(e.target.value)}
+                placeholder="GST no of guest"
               />
             </Form.Group>
             <br/>

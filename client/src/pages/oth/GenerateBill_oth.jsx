@@ -116,8 +116,8 @@ const GenerateBill_oth = () => {
  <br/>
  <h3>FROM</h3>
  <h5 style={{fontWeight:'bold'}}>PARTAP SINGH BAJWA HUF (OYO TOWNHOUSE) &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Date : {date}</h5>
-    <h5 style={{fontWeight:'bold'}}>Plot No.557 Golf</h5>
-    <h5 style={{fontWeight:'bold'}}>DLF City Phase 3, Gurgram,Haryana-122001</h5>
+    <h5 style={{fontWeight:'bold'}}>Plot No.557 Golf Course Road</h5>
+    <h5>Sector 27 Gurgaon - 122009</h5>
     <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
     <p style={{fontWeight:'bold'}}>GST No: 06AAIHP7660R1ZA</p>
     <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : 2024-2025/{data.size}</h5>

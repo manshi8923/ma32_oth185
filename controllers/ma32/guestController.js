@@ -54,7 +54,7 @@ const updateFoodBill=asyncHandler(async(req,res)=>{
 })
 //update guest 
 const updateGuest=asyncHandler(async(req,res)=>{
-    const {days,arrival,depart,price}=req.body;
+    const {days,arrival,depart,price,gst}=req.body;
     const guest=await Guests.findById(req.params.id);
     try{
         if(guest){
@@ -62,6 +62,9 @@ const updateGuest=asyncHandler(async(req,res)=>{
             guest.arrival=arrival;
             guest.depart=depart;
             guest.price=price;
+            if(gst!==""){
+                guest.gst=gst;
+            }
             await guest.save();
         }
         else{
