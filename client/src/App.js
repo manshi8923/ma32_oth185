@@ -25,6 +25,8 @@ import AddExpense_ma from './pages/ma/AddExpense_ma';
 import AddExpense_oth from './pages/oth/AddExpense_oth';
 import EditGuest_ma from './pages/ma/EditGuest_ma';
 import EditGuest_oth from './pages/oth/EditGuest_oth';
+import EditExpense_ma from './pages/ma/EditExpense_ma';
+import EditExpense_oth from './pages/oth/EditExpense_oth';
 const App = () => {
   return (
     <BrowserRouter>
@@ -40,6 +42,7 @@ const App = () => {
       <Route path='/ma/revenue' element={<Revenue_ma/>} />
       <Route path='/ma/expense' element={<Expense_ma/>} />
       <Route path='/ma/add-expense' element={<AddExpense_ma/>}/>
+      <Route path='/ma/expense/edit/:id' element={<EditExpense_ma/>}/>
       <Route path='/ma/edit/:id' element={<EditGuest_ma/>} />
       {/* oth */}
       <Route path='/oth/dashboard' element={<Dashboard_oth/>} />
@@ -50,8 +53,10 @@ const App = () => {
       <Route path='/oth/generateBill/:id' element={<GenerateBill_oth/>}/>
       <Route path='/oth/revenue' element={<Revenue_oth/>}/>
       <Route path='/oth/expense' element={<Expense_oth/>} />
+      <Route path='/oth/expense/edit/:id' element={<EditExpense_oth/>} />
       <Route path='/oth/add-expense' element={<AddExpense_oth/>} />
       <Route path='/oth/edit/:id' element={<EditGuest_oth/>} />
+  
     </Routes>
     <ToastContainer/>
     </BrowserRouter>

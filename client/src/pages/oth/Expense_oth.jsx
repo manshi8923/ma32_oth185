@@ -38,6 +38,7 @@ const Expense_oth = () => {
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Date</th>
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Remarks</th>
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Expenditure</th>
+     <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Edit status</th>
      </tr>
     {
      data.map((expense)=>{
@@ -45,6 +46,7 @@ const Expense_oth = () => {
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.date}</th>
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.remarks}</th>
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.title}</th>
+          <th style={{padding:'20px',border: '1px solid black',fontWeight:'bold'}}><Button onClick={()=>navigate(`/oth/expense/edit/${expense._id}`)}>Edit</Button></th>
        </tr>
      })
     }

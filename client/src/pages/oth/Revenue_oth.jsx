@@ -19,6 +19,7 @@ const Revenue_oth = () => {
   const [month_rev,setMonth_rev]=useState(0);
   const [year_rev,setYear_rev]=useState(0);
   const [arr,setArr]=useState(0);
+  const [filter,setFilter]=useState([]);
   useEffect(() => {
     setLoading(true);
     fetch("/api/oth/guests/", {
@@ -43,6 +44,12 @@ const Revenue_oth = () => {
         else{
           const m=date[5]+date[6];
           setMonth(months[parseInt(5)]);
+        }
+        for(let i=0;i<data.length;i++){
+          if(data[i].depart[5]===date[5]&&data[i].depart[6]===data[i].depart[6]){
+            setFilter([...filter,data[i]]);
+            console.log(filter);
+          }
         }
         let mont_arr=0; let year_arr=0;
         for (let i = 0; i < data.length; i++) {
@@ -99,11 +106,36 @@ const Revenue_oth = () => {
             </Card.Body>
           </Card>
         </div>
+        <div style={{display:"flex",justifyContent:"center",alignContent:"center",flexDirection:"column",marginBottom:"100px"}}>
+        <h1 style={{marginBottom:"30px",color:"gray"}}>Overview of this month {month}</h1>
+       <table>
+        <tr>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Guest Name</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Address</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Depart date</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Room Price</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Food Bill</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Total Bill</th>
+        </tr>
+        {
+          filter.map((item)=>{
+              return <tr>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{item.name}</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{item.address}</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{item.depart}</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{item.price}</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{parseInt(item.total)-parseInt(item.price)}</th>
+        <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{item.total}</th>
+              </tr>
+            
+          })
+        }
+        </table>
+       </div>
       </MainScreen>
     </>
   )
 }
-
 
 
 

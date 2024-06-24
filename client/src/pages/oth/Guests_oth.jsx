@@ -132,7 +132,7 @@ const Guests_oth = () => {
                   <span className='mb-2' style={{fontSize:'20px'}}>Total Bill : </span>
                   <span style={{fontSize:'15px',color:'#0000FF'}}>{guest.total===undefined?'Not Done':guest.total}</span>
                 </Card.Body>
-                {guest.status!=="Depart"&&<Button onClick={()=>{navigate(`/ma/edit/${guest._id}`)} }>Edit Guest Status</Button>}
+                {guest.status!=="Depart"&&<Button onClick={()=>{navigate(`/oth/edit/${guest._id}`)} }>Edit Guest Status</Button>}
                 </Card>
              })
          }

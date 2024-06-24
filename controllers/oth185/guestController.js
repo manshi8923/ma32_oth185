@@ -35,6 +35,23 @@ const getExpense=asyncHandler(async(req,res)=>{
     const expense=await Expense.find();
     res.send(expense);
 })
+
+const updateExpense=asyncHandler(async(req,res)=>{
+    const {date,remarks,title}=req.body;
+    const expense=await Expense.findById(req.params.id);
+    try{
+        if(expense){
+                expense.date=date;
+                expense.remarks=remarks;
+                expense.title=title;
+            await expense.save();
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+})
+
 //update guest 
 const updateFoodBill=asyncHandler(async(req,res)=>{
     const{bill,total}=req.body;
@@ -93,4 +110,4 @@ const updateGuest=asyncHandler(async(req,res)=>{
     }
 })
 
-module.exports={addGuest,getGuests,searchGuest,updateFoodBill,addExpense,getExpense,updateGuest};
+module.exports={addGuest,getGuests,searchGuest,updateFoodBill,addExpense,getExpense,updateGuest,updateExpense};

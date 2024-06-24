@@ -32,19 +32,22 @@ const Expense_ma = () => {
     <div className='expense'>
      
      <h1>Daily Expense</h1>
-     <Button size='lg' style={{marginBottom:'30px'}} onClick={()=>navigate('/oth/add-expense')} >Add Expense</Button>
+     <Button size='lg' style={{marginBottom:'30px'}} onClick={()=>navigate('/ma/add-expense')} >Add Expense</Button>
      <table style={{border: '1px solid black',fontWeight:'bold'}}>
      <tr>
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Date</th>
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Remarks</th>
      <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Expenditure</th>
+     <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>Edit status</th>
      </tr>
     {
      data.map((expense)=>{
        return <tr>
+        {console.log(expense)}
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.date}</th>
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.remarks}</th>
           <th style={{padding:'10px',border: '1px solid black',fontWeight:'bold'}}>{expense.title}</th>
+          <th style={{padding:'20px',border: '1px solid black',fontWeight:'bold'}}><Button onClick={()=>navigate(`/ma/expense/edit/${expense._id}`)}>Edit</Button></th>
        </tr>
      })
     }

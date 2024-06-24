@@ -1,9 +1,10 @@
 const express=require("express");
 const { getRooms, updateRoom } = require("../../controllers/ma32/roomController");
-const { getExpense, addExpense } = require("../../controllers/ma32/guestController");
+const { getExpense, addExpense, updateExpense } = require("../../controllers/ma32/guestController");
 const router=express.Router();
 router.route('/').get(getRooms);
 router.route('/:id').put(updateRoom);
 router.route('/all-expense').get(getExpense);
 router.route('/add-expense').post(addExpense);
+router.route('/expense/edit/:id').put(updateExpense);
 module.exports=router;
