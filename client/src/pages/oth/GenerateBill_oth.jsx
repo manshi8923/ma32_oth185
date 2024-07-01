@@ -111,7 +111,7 @@ const GenerateBill_oth = () => {
     {bill&& <>
 
  <div id='print' style={{marginLeft:'60px',marginBottom:'40px'}}>
- <h1 style={{textAlign:'center',marginTop:'30px'}}>HOTEL ACCOMMODATION INVOICE</h1>
+ <h1 style={{textAlign:'center',marginTop:'30px'}}>TAX INVOICE</h1>
  <br/>
  <br/>
  <h3>FROM</h3>
@@ -120,7 +120,7 @@ const GenerateBill_oth = () => {
     <h5>Sector 27 Gurgaon - 122009</h5>
     <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
     <p style={{fontWeight:'bold'}}>GST No: 06AAIHP7660R1ZA</p>
-    <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : 2024-2025/{data.size}</h5>
+    <h5 style={{marginLeft:'440px',fontWeight:'bold'}}>Invoice No : 2024-2025/{data.size}a</h5>
     <h5 style={{fontWeight:'bold'}}>Billing to: {data.name}</h5>
     <h5 style={{fontWeight:'bold'}}>{data.address}</h5>
     <h5 style={{fontWeight:'bold'}}>GST NO . {data.gst}</h5>
@@ -230,6 +230,7 @@ const GenerateBill_oth = () => {
  <h5 style={{fontWeight:'bold'}}>Plot No.557 Golf Course Road</h5>
  <h5 style={{fontWeight:'bold'}}>Sector 27 Gurgaon - 122009</h5>
  <h5 style={{fontWeight:'bold'}}>Ph:- 9149377652</h5>
+ <p>This is system generated invoice no signature required. </p>
 </div>
 <Button style={{marginLeft:'60px'}} onClick={()=>handlePrint('print')}>Print</Button>
     </>}
